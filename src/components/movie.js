@@ -23,7 +23,6 @@ class Movie extends Component {
       booking: null,
       soldseat: null
     };
-    this.bookTicket = this.bookTicket.bind(this);
     this.cancelTicket = this.cancelTicket.bind(this);
     this.purchaseTicket = this.purchaseTicket.bind(this);
     this.selectSeat = this.selectSeat.bind(this)
@@ -31,21 +30,6 @@ class Movie extends Component {
   }
   
 
-  bookTicket(mvid) {
-    
-    console.log(mvid);
-    //validate input
-    fetch('http://localhost:8080/movies?mvid='+mvid)
-    .then(res => res.json())
-    .then((data) => {
-      console.log(data[0])
-      this.setState({selectedMovie: data[0]}, () => this.ReserveSeat())
-      console.log('set data done')
-    })
-    .catch(console.log)
-    
-   
-  }
   selectSeat(movie,movieTime){
     this.setState({selectedMovie: movie});
     this.setState({selectedMovieTime: movieTime});
@@ -54,7 +38,7 @@ class Movie extends Component {
       method: 'POST',
       body: mvId
     };
-    fetch('http://localhost:8080/api/movie/v1/seatstatus',reqParams)
+    fetch('/api/movie/v1/seatstatus',reqParams)
     .then((response) => {
       if(!response.ok) throw new Error(response.status);
       else {
@@ -101,7 +85,7 @@ class Movie extends Component {
                   'request-hash': this.state.jwt_token},  
       body: JSON.stringify(booking)
     };
-    fetch('http://localhost:8080/api/booking/v1/reserve',reqParams)
+    fetch('/api/booking/v1/reserve',reqParams)
     .then((response) => {
       if(!response.ok) throw new Error(response.status);
       else {
@@ -143,7 +127,7 @@ class Movie extends Component {
                   'request-hash': this.state.jwt_token},  
       body: JSON.stringify(booking)
     };
-    fetch('http://localhost:8080/api/booking/v1/purchase',reqParams)
+    fetch('/api/booking/v1/purchase',reqParams)
     .then((response) => {
       if(!response.ok) throw new Error(response.status);
       })

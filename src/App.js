@@ -12,7 +12,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:8080/api/movie/v1/list')
+    fetch('/api/movie/v1/list')
     .then(res => res.json())
     .then((data) => {
       this.setState({ movies: data })

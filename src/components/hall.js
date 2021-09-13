@@ -47,9 +47,9 @@ class Hall extends Component {
           var mt = this.props.selectedMovieTime;
           var sSeat = this.state.selectedSeat;
           var soldSeat = this.state.soldSeat;
-          console.log("soldseat")
-          console.log(soldSeat)
+          //there seems some issue here, unable to get the ocupied seat...
           const layout = JSON.parse("["+mt.hall.layout+"]");
+          
           
         return(<div>
             <ToggleButtonGroup id="row1" type="checkbox" variant="primary" >
